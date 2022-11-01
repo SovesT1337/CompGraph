@@ -1,0 +1,50 @@
+<HTML>
+<BODY>
+<canvas id = 'lesson02' width = '700' height = '700'> </canvas>
+<script>
+    var canvas = document.getElementById("lesson02");
+    var ctx = canvas.getContext("2d");
+
+    var img = new Image();
+    var h = 619;
+    var w = 660;
+    var h_ = 13;
+    var w_ = 13;
+    img.src = "img.jpg";
+    img.onload = function(){
+        ctx.drawImage (img, 0, 0, h, w);
+    }
+
+    canvas.addEventListener('click', function (event){
+        for (var x = 0; x < h; x += 1) {
+            for (var y = 0; y < w; y += 1){
+                var imgData = ctx.getImageData (x, y, h_, w_);
+
+                var r = 0, g = 0, b = 0, a = 0;
+                for(var z = 0, len = imgData.data.length; z < len; z += 4)
+                {
+                    r += imgData.data[z];
+                    g += imgData.data[z + 1];
+                    b += imgData.data[z + 2];
+                    a += imgData.data[z + 3];
+                }
+                imgData.data[0] = r / (h_ * w_);
+                imgData.data[1] = g / (h_ * w_);
+                imgData.data[2] = b / (h_ * w_);
+                imgData.data[3] = a / (h_ * w_);
+                ctx.putImageData(imgData, x, y);
+            }
+        }
+    });
+
+    var link = document.createElement("a");
+    link.innerHTML = 'save image';
+    link.addEventListener('click', function (event) {
+        link.href = canvas.toDataURL();
+        link.download = "canvas.png";
+    }, false)
+    document.body.appendChild(link);
+
+</script>
+</BODY>
+</HTML>
