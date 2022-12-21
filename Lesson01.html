@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <HTML>
-
 <BODY>
 	<canvas id='lesson01' width='1920' height='1080'>
 		<script>
 			let canvas = document.getElementById("lesson01");
 			let context = canvas.getContext("2d");
 
-			var psize = 1;
+			const psize = 1;
 
-			var posx = 0;
-			var posy = 0;
-			var sostx = 0;
-			var sosty = 0;
+			let posx = 0;
+			let posy = 0;
+			let sostx = 0;
+			let sosty = 0;
 
 			function draw() {
 
-				if (posy == window.innerHeight - 50) sosty = 1;
-				if (posy == 0) sosty = 0;
-				if (posx == window.innerWidth - 50) sostx = 1;
-				if (posx == 0) sostx = 0;
+				if (posy === window.innerHeight - 50) sosty = 1;
+				if (posy === 0) sosty = 0;
+				if (posx === window.innerWidth - 50) sostx = 1;
+				if (posx === 0) sostx = 0;
 
-				if ((sosty == 0) && (sostx == 0)) context.fillStyle = '#006400';
-				if ((sosty == 0) && (sostx == 1)) context.fillStyle = '#87CEFA';
-				if ((sosty == 1) && (sostx == 0)) context.fillStyle = '#DEB887';
-				if ((sosty == 1) && (sostx == 1)) context.fillStyle = '#483D8B';
+				if ((sosty === 0) && (sostx === 0)) context.fillStyle = '#006400';
+				if ((sosty === 0) && (sostx === 1)) context.fillStyle = '#87CEFA';
+				if ((sosty === 1) && (sostx === 0)) context.fillStyle = '#DEB887';
+				if ((sosty === 1) && (sostx === 1)) context.fillStyle = '#483D8B';
 
-				for (var j = 1; j < 50; j++) {
-					for (var i = 1; i < 50; i++) {
-						context.fillRect(posx + i * psize, posy + j * psize, 1 * psize, 1 * psize);
+				for (let j = 1; j < 50; j++) {
+					for (let i = 1; i < 50; i++) {
+						context.fillRect(posx + i * psize, posy + j * psize, psize, psize);
 					}
 				}
 
-				if (sosty == 0) posy += 1;
+				if (sosty === 0) posy += 1;
 				else posy -= 1;
-				if (sostx == 0) posx += 1;
+				if (sostx === 0) posx += 1;
 				else posx -= 1;
 
 				context.fillStyle = '#C71585';
-				for (var j = 1; j < 50; j++) {
-					for (var i = 1; i < 50; i++) {
-						context.fillRect(posx + i * psize, posy + j * psize, 1 * psize, 1 * psize);
+				for (let j = 1; j < 50; j++) {
+					for (let i = 1; i < 50; i++) {
+						context.fillRect(posx + i * psize, posy + j * psize, psize, psize);
 					}
 				}
 			}
@@ -49,5 +48,4 @@
 
 		</script>
 </BODY>
-
 </HTML>
